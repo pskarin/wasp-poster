@@ -32,13 +32,13 @@
 
 % FONTS AND COLORS
 \renewcommand{\familydefault}{\sfdefault}
-% Comment the four lines below, and uncomment the following two, to skip WASP fonts
+\newcommand{\mytitlefont}{\fontfamily{\familydefault}\selectfont }
+\newcommand{\mytextfont}{\fontfamily{\familydefault}\selectfont }
+% Comment the four lines below to skip WASP fonts
 \usepackage{MinionPro}
 \usepackage{MyriadPro}
-\newcommand{\mytitlefont}{\fontfamily{MyriadPro-LF}\selectfont }
-\newcommand{\mytextfont}{\fontfamily{MinionPro-LF}\selectfont }
-%\newcommand{\mytitlefont}{\fontfamily{\familydefault}\selectfont }
-%\newcommand{\mytextfont}{\fontfamily{\familydefault}\selectfont }
+\renewcommand{\mytitlefont}{\fontfamily{MyriadPro-LF}\selectfont }
+\renewcommand{\mytextfont}{\fontfamily{MinionPro-LF}\selectfont }
 
 \definecolor{wasppink}{RGB}{203,166,169} 
 \definecolor{waspgrey}{RGB}{88,89,91}

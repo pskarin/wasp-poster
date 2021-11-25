@@ -1,0 +1,164 @@
+% This Latex poster uses the baposter class, originally from
+% http://www.brian-amberg.de/uni/poster. Versions are found in several places.
+% The files on which this version is based are from circulation within WASP
+% and exact origins are not known.
+%
+% CONTENT
+% To update the poster, modify the contents in the parts/ folder.
+% The file header.tex contains convenience commands such as \title, \companylogo etc.
+% Other files contain pure formatting.
+%
+% COLORS
+% The following standard colors are defined: wasp_text, wasppink, waspgrey, waspblue
+%
+% Enjoy!
+% Per Skarin, 2021
+
+\documentclass[a0paper,portrait]{baposter}
+\usepackage{lipsum}  
+\usepackage{relsize}	% For \smaller
+\usepackage{url}	% For \url
+\usepackage{epstopdf}	% Included EPS files automatically converted to PDF to include with pdflatex
+\usepackage[utf8]{inputenc} 
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage[labelfont=bf]{caption}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{mathtools}
+
+% PATHS
+\graphicspath{{template-images/}{content-images/}}
+
+% FONTS AND COLORS
+\renewcommand{\familydefault}{\sfdefault}
+% Comment the four lines below, and uncomment the following two, to skip WASP fonts
+\usepackage{MinionPro}
+\usepackage{MyriadPro}
+\newcommand{\mytitlefont}{\fontfamily{MyriadPro-LF}\selectfont }
+\newcommand{\mytextfont}{\fontfamily{MinionPro-LF}\selectfont }
+%\newcommand{\mytitlefont}{\fontfamily{\familydefault}\selectfont }
+%\newcommand{\mytextfont}{\fontfamily{\familydefault}\selectfont }
+
+\definecolor{wasppink}{RGB}{203,166,169} 
+\definecolor{waspgrey}{RGB}{88,89,91}
+\definecolor{waspblue}{RGB}{26,141,173}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+
+\definecolor{wasp_text}{RGB}{66,80,82}
+\colorlet{wasp_banner_light}{waspblue}
+\colorlet{wasp_banner_dark}{waspgrey}
+
+% LIST SETTINGS
+\setlist{itemsep=.1em, leftmargin=1em}
+
+% COMMANDS
+\newcommand\thetitle{}\renewcommand\title[1]{\renewcommand\thetitle{#1}}
+\newcommand\theauthor{}\renewcommand\author[1]{\renewcommand\theauthor{#1}}
+\newcommand\thedepinfo{}\newcommand\depinfo[1]{\renewcommand\thedepinfo{#1}}
+\newcommand\thesupervisors{}\newcommand\supervisors[1]{\renewcommand\thesupervisors{#1}}
+\newcommand\theuniversitylogo{}\newcommand\universitylogo[1]{\renewcommand\theuniversitylogo{#1}}
+\newcommand\thecompanylogo{}\newcommand\companylogo[1]{\renewcommand\thecompanylogo{#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Document Start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{parts/header}
+
+\begin{document}
+
+%%% General Poster Settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% Eye Catcher, Title, Authors and University Images %%%%%%%%%%%%%%%%%%%%%%
+\begin{poster}{
+ % Show grid to help with alignment
+ grid=false,
+ % eyecatcher=false,
+ % Column spacing
+ colspacing=1em,
+ columns=2,
+ boxpadding=.5cm,
+ % Color style
+ headerColorOne=wasp_banner_light,
+ borderColor=wasp_banner_light,
+ headerFontColor=cyan!10!white,
+ % Format of textbox
+ textborder=faded,
+ % Format of text header
+ headerborder=open,
+ headershape=roundedright,
+ headershade=plain,
+ background=none,
+ % bgColorOne=cyan!10!white,
+ headerheight=0.12\textheight}
+%%% Eye Cacther %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{
+	Eye Catcher, empty if option eyecatcher=false - unused
+}
+%%%% Title %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{
+	\textcolor{wasp_text}{\mytitlefont \huge \thetitle}
+}
+%%% Authors %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{
+  \vspace{0.5em}
+  \textcolor{wasp_text}{\Large \theauthor\\
+	\large \thedepinfo\\
+	Supervisors: \thesupervisors\\
+	}
+}
+%%% Logo %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{
+  \begin{minipage}{8cm}
+   \centering
+   \vspace{0.5cm}
+	    \theuniversitylogo\vspace{0.25cm}\par
+		  \thecompanylogo
+  \end{minipage}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Now define the boxes that make up the poster
+%%%---------------------------------------------------------------------------
+%%% Each box has a name and can be placed absolutely or relatively.
+%%% The only inconvenience is that you can only specify a relative position 
+%%% towards an already declared box. So if you have a box attached to the 
+%%% bottom, one to the top and a third one which should be inbetween, you 
+%%% have to specify the top and bottom boxes before you specify the middle 
+%%% box.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \headerbox{\mytitlefont Motivation \& Research Goals}{name=description,column=0,row=0,span=2}{
+  \mytextfont
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \input{parts/motivation}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \headerbox{\mytitlefont Methods}{name=motivation,column=0,row=0,span=1, below=description}{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \mytextfont
+  \input{parts/methods}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \headerbox{\mytitlefont Selected Results}{name=goal,column=1,row=0,span=1, below=description }{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \mytextfont
+  \input{parts/results}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \headerbox{References}{headerColorOne=wasp_banner_dark, borderColor=wasp_banner_dark, name=results,column=0,row=0,span=1, below=motivation }{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\mytextfont
+  \input{parts/references}
+}
+
+\headerbox{}{name=foottext, column=0, span=2, above=bottom, textborder=none,headerborder=none,boxheaderheight=0pt,boxColorOne=wasp_banner_dark}{\hfill \includegraphics[height=1cm]{waspwhite}}
+
+
+\end{poster}
+\end{document}

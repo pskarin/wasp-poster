@@ -1,6 +1,12 @@
+*-converted-to.pdf
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
 MinionPro-FontDef.sty
 MinionPro.sty
 MyriadPro-FontDef.sty
 MyriadPro.sty
 otfontdef.sty
-
+wasp-poster.pdf
